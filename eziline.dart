@@ -138,17 +138,31 @@ void main() {
 
 bool AlreadyPresent(List<String> user, List<String> attendance, String login) {
   bool isPresent = true;
+  List<String> attended = ["Start"];
+  attended.removeAt(0);
+
   for (int i = 0; i < user.length; i++) {
     if (user[i] == login) {
-      String att = attendance[i];
-      if (att == retToday()) {
-        isPresent = true;
-      } else {
-        isPresent = false;
-      }
+      attended.add(attendance[i]);
+    }
+  }
+  for (int i = 0; i < attended.length; i++) {
+    String att = attended[i];
+    if (att == retToday()) {
+      isPresent = true;
+    } else {
+      isPresent = false;
     }
   }
   return isPresent;
+}
+
+List<String> retAttendance(
+    List<String> user, List<String> attendance, String login) {
+  List<String> Attended = ["Start"];
+  Attended.removeAt(0);
+
+  return Attended;
 }
 
 String retToday() {
