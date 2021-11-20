@@ -18,12 +18,12 @@ void main() {
   List<String> leave_date = ["Start"];
   String login_user;
 
-  u_name.removeAt(0);
-  u_pass.removeAt(0);
-  attend_date.removeAt(0);
-  u_attendance.removeAt(0);
-  u_leave.removeAt(0);
-  leave_date.removeAt(0);
+  // u_name.removeAt(0);
+  // u_pass.removeAt(0);
+  // attend_date.removeAt(0);
+  // u_attendance.removeAt(0);
+  // u_leave.removeAt(0);
+  // leave_date.removeAt(0);
 
   bool check = true;
   bool logged_in = true;
@@ -110,11 +110,16 @@ void main() {
                   // Mark Leave...
                   if (AlreadyPresent(u_name, u_attendance, login_user)) {
                     print("Can't mark leave! you're already present.");
-                  } else {}
+                  } else {
+                    u_leave.add(login_user);
+                    leave_date.add(retToday());
+                  }
                   break;
 
                 case 3:
                   // View Attendance & Leaves
+                  print(retAttendance(u_name, u_attendance, login_user));
+
                   break;
                 case 4:
                   logged_in = false;
@@ -139,7 +144,7 @@ void main() {
 bool AlreadyPresent(List<String> user, List<String> attendance, String login) {
   bool isPresent = true;
   List<String> attended = ["Start"];
-  attended.removeAt(0);
+  // attended.removeAt(0);
 
   for (int i = 0; i < user.length; i++) {
     if (user[i] == login) {
@@ -160,8 +165,12 @@ bool AlreadyPresent(List<String> user, List<String> attendance, String login) {
 List<String> retAttendance(
     List<String> user, List<String> attendance, String login) {
   List<String> Attended = ["Start"];
-  Attended.removeAt(0);
-
+  // Attended.removeAt(0);
+  for (int i = 0; i < user.length; i++) {
+    if (user[i] == login) {
+      Attended.add(attendance[i]);
+    }
+  }
   return Attended;
 }
 
